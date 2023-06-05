@@ -19,8 +19,7 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 	String operator;
 	Text displayText;
 	String part1="";
-	int result;
-	float resultDiv;
+	float result;
 	
 	public Calculator(){
 
@@ -134,7 +133,7 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 		String value = b.getText();
 		
 			//ASINGAR VALORES-EVITAR ERRORES
-            if((result==0 && resultDiv==0 ) && (!(operator!=null)) && (value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4") || value.equals("5") || value.equals("6") || value.equals("7") || value.equals("8") || value.equals("9") || value.equals("0"))) {
+            if((result==0) && (!(operator!=null)) && (value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4") || value.equals("5") || value.equals("6") || value.equals("7") || value.equals("8") || value.equals("9") || value.equals("0"))) {
                 number1+=value;
 				displayText.setText("");
                 displayText.setText(number1);
@@ -148,6 +147,7 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 					number1="";
 					number2="";
 					operator=null;
+					result=0;
 				}
 			}else if(((operator!=null)) && (value.equals("1") || value.equals("2") || value.equals("3") || value.equals("4") || value.equals("5") || value.equals("6") || value.equals("7") || value.equals("8") || value.equals("9") || value.equals("0"))){
 				number2+=value;
@@ -161,33 +161,32 @@ public class Calculator extends VBox implements EventHandler<ActionEvent>{
 				number2="";
 				operator=null;
 				result=0;
-				resultDiv=0;
 				displayText.setText("");
 			}else if(value.equals("=")){
 				if(operator!=null){
 					if(operator.equals("+")){
-						result = Integer.parseInt(number1) + Integer.parseInt(number2);
+						result = Float.parseFloat(number1) + Float.parseFloat(number2);
 						displayText.setText("");
 						displayText.setText(String.valueOf(result));
 						number1=String.valueOf(result);
 						number2="";
 						operator=null;
 					}else if(operator.equals("-")){
-						result = Integer.parseInt(number1) - Integer.parseInt(number2);
+						result = Float.parseFloat(number1) - Float.parseFloat(number2);
 						displayText.setText("");
 						displayText.setText(String.valueOf(result));
 						number1=String.valueOf(result);
 						number2="";
 						operator=null;
 					}else if(operator.equals("/")){
-						resultDiv = Float.parseFloat(number1) / Float.parseFloat(number2);
+						result = Float.parseFloat(number1) / Float.parseFloat(number2);
 						displayText.setText("");
-						displayText.setText(String.valueOf(resultDiv));
-						number1=String.valueOf(resultDiv);
+						displayText.setText(String.valueOf(result));
+						number1=String.valueOf(result);
 						number2="";
 						operator=null;
 					}else if(operator.equals("*")){
-						result = Integer.parseInt(number1) * Integer.parseInt(number2);
+						result =  Float.parseFloat(number1) * Float.parseFloat(number2);
 						displayText.setText("");
 						displayText.setText(String.valueOf(result));
 						number1=String.valueOf(result);
